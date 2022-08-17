@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Pessoa;
+import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Telefone;
 import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Usuario;
 
 @EntityScan("br.edu.ifnmg.aplicacao_exemplo_spring")
@@ -57,6 +58,16 @@ public class AplicacaoExemploSpringApplication
 
 		// Termina a transação
 		t.commit();
+
+
+		p.add(new Telefone("38", "32212011"));
+
+		EntityTransaction t2 = manager.getTransaction();
+		t2.begin();
+		manager.merge(p);
+		manager.flush();
+		t2.commit();
+
 	}
 
 }

@@ -1,14 +1,20 @@
 package br.edu.ifnmg.aplicacao_exemplo_spring.entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pessoas")
+@Table(name = "Pessoas")
 public class Pessoa {
 
     @Id
@@ -18,14 +24,19 @@ public class Pessoa {
     @Column(name = "nome", length = 500, nullable = false)
     private String nome;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pessoa")
+    private List<Telefone> telefones;
+
     public Pessoa() {
         this.id = 0L;
         this.nome = "";
+        this.telefones = new ArrayList<>();
     }
 
     public Pessoa(long id, String nome) {
         this.id = id;
         this.nome = nome;
+        this.telefones = new ArrayList<>();
     }
 
     public long getId() {
@@ -43,6 +54,8 @@ public class Pessoa {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    
 
     @Override
     public int hashCode() {
@@ -75,6 +88,27 @@ public class Pessoa {
     @Override
     public String toString() {
         return "Pessoa [nome=" + nome + "]";
+    }
+
+    public List<Telefone> getTelefones() {
+        return telefones;
+    }
+
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
+
+    public void add(Telefone t){
+        if(!this.telefones.contains(t)){
+            t.setPessoa(this);
+            this.telefones.add(t);
+        }
+    }
+
+    public void remove(Telefone t){
+        if(this.telefones.contains(t)){
+            this.telefones.remove(t);
+        }
     }
     
 }
