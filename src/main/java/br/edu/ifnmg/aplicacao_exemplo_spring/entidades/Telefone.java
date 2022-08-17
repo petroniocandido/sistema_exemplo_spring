@@ -1,6 +1,5 @@
 package br.edu.ifnmg.aplicacao_exemplo_spring.entidades;
 
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
