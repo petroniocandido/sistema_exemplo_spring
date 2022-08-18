@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -47,19 +48,19 @@ public class Pessoa {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "PessoasContatos",
-    joinColumns = @JoinColumn(name="PessoaID"), 
-    inverseJoinColumns = @JoinColumn(name="ContatoID"))
+        joinColumns = @JoinColumn(name="PessoaID"), 
+        inverseJoinColumns = @JoinColumn(name="ContatoID"))
     private List<Pessoa> contatos;
 
     @ManyToOne(targetEntity = Usuario.class)
-    @JoinColumn(name = "usuarioCriadorID")
+    @JoinColumn(foreignKey = @ForeignKey(name = "UsuarioCriadorID"))
     private Usuario criador;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
 
     @ManyToOne(targetEntity = Usuario.class)
-    @JoinColumn(name = "usuarioModificadorID")
+    @JoinColumn(foreignKey = @ForeignKey(name = "usuarioModificadorID"))
     private Usuario ultimoModificador;
 
     @Version
@@ -75,7 +76,7 @@ public class Pessoa {
         this.criador = null;
         this.ultimoModificador = null;
         this.dataCriacao = new Date();
-        this.dataUltimaModificacao = null;
+        this.dataUltimaModificacao = new Date();
     }
 
     public Pessoa(long id, String nome) {
@@ -85,8 +86,8 @@ public class Pessoa {
         this.telefones = new ArrayList<>();
         this.criador = null;
         this.ultimoModificador = null;
-        this.dataCriacao = null;
-        this.dataUltimaModificacao = null;
+        this.dataCriacao = new Date();
+        this.dataUltimaModificacao = new Date();
     }
 
     public long getId() {
@@ -111,8 +112,13 @@ public class Pessoa {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((criador == null) ? 0 : criador.hashCode());
+        result = prime * result + ((dataCriacao == null) ? 0 : dataCriacao.hashCode());
+        result = prime * result + ((dataUltimaModificacao == null) ? 0 : dataUltimaModificacao.hashCode());
         result = prime * result + (int) (id ^ (id >>> 32));
         result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+        result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
+        result = prime * result + ((ultimoModificador == null) ? 0 : ultimoModificador.hashCode());
         return result;
     }
 
@@ -125,12 +131,34 @@ public class Pessoa {
         if (getClass() != obj.getClass())
             return false;
         Pessoa other = (Pessoa) obj;
+        if (criador == null) {
+            if (other.criador != null)
+                return false;
+        } else if (!criador.equals(other.criador))
+            return false;
+        if (dataCriacao == null) {
+            if (other.dataCriacao != null)
+                return false;
+        } else if (!dataCriacao.equals(other.dataCriacao))
+            return false;
+        if (dataUltimaModificacao == null) {
+            if (other.dataUltimaModificacao != null)
+                return false;
+        } else if (!dataUltimaModificacao.equals(other.dataUltimaModificacao))
+            return false;
         if (id != other.id)
             return false;
         if (nome == null) {
             if (other.nome != null)
                 return false;
         } else if (!nome.equals(other.nome))
+            return false;
+        if (tipo != other.tipo)
+            return false;
+        if (ultimoModificador == null) {
+            if (other.ultimoModificador != null)
+                return false;
+        } else if (!ultimoModificador.equals(other.ultimoModificador))
             return false;
         return true;
     }

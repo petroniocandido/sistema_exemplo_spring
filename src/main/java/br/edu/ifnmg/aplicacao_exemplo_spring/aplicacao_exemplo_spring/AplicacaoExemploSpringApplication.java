@@ -1,26 +1,32 @@
 package br.edu.ifnmg.aplicacao_exemplo_spring.aplicacao_exemplo_spring;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.PersistenceUnit;
+//import javax.persistence.EntityManager;
+//import javax.persistence.EntityTransaction;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 
 import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Pessoa;
-import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Telefone;
+import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.PessoaFisica;
 import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Usuario;
+import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.PessoaFisicaRepositorio;
+import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.UsuarioRepositorio;
 
 @EntityScan("br.edu.ifnmg.aplicacao_exemplo_spring")
+@ComponentScan("br.edu.ifnmg.aplicacao_exemplo_spring")
 @SpringBootApplication
 public class AplicacaoExemploSpringApplication
 		implements CommandLineRunner {
 
-	@PersistenceUnit
-	private EntityManagerFactory factory;
+	@Autowired
+	PessoaFisicaRepositorio pessoas;
+
+	@Autowired
+	UsuarioRepositorio usuarios;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AplicacaoExemploSpringApplication.class, args);
@@ -30,14 +36,25 @@ public class AplicacaoExemploSpringApplication
 	public void run(String... args) throws Exception {
 		
 		// Cria um objeto da entidade Pessoa
-		Pessoa p = new Pessoa();
+		/* 
+		PessoaFisica p = new PessoaFisica();
 		p.setNome("Petrônio");
+
+		pessoas.Salvar(p);
+		*/
 
 		// Cria um objeto da entidade Usuario
 		Usuario u = new Usuario();
 		u.setLogin("petronio");
 		u.setSenha("123");
 
+		usuarios.Salvar(u);
+
+		for(Usuario uu : usuarios.Buscar(null)){
+			System.out.println(uu);
+		}
+
+		/* 
 		// Inicializa o gerenciador de entidades
 		EntityManager manager = factory.createEntityManager();
 
@@ -67,6 +84,7 @@ public class AplicacaoExemploSpringApplication
 		manager.merge(p);
 		manager.flush();
 		t2.commit();
+		*/
 
 	}
 
