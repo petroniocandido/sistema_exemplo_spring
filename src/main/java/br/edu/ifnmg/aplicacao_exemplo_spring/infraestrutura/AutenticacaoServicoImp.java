@@ -24,7 +24,7 @@ public class AutenticacaoServicoImp implements AutenticacaoServico {
     public boolean autenticar(String login, String senha) {
         usuario = repositorio.Abrir(login);
         if(usuario != null){
-            if(usuario.getSenha() == senha){
+            if(usuario.getSenha().equals(senha)){
                 return true;
             } else {
                 usuario = null;

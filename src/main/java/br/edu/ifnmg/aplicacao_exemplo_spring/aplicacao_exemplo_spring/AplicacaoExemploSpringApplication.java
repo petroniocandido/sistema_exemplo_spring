@@ -10,9 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 
-import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Pessoa;
+import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.LogNivel;
 import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.PessoaFisica;
 import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Usuario;
+import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.AutenticacaoServico;
+import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.LogServico;
 import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.PessoaFisicaRepositorio;
 import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.UsuarioRepositorio;
 
@@ -27,6 +29,12 @@ public class AplicacaoExemploSpringApplication
 
 	@Autowired
 	UsuarioRepositorio usuarios;
+
+	@Autowired
+	AutenticacaoServico autenticacao;
+
+	@Autowired
+	LogServico log;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AplicacaoExemploSpringApplication.class, args);
@@ -49,15 +57,20 @@ public class AplicacaoExemploSpringApplication
 		//	System.out.println(uu);
 		//}
 
-		u = usuarios.Abrir(1L);
+		if(autenticacao.autenticar("petronio", "123")) {
+			log.registrar(LogNivel.Informacao, "Login");
+		}
+
 
 		PessoaFisica p = new PessoaFisica();
 		p.setNome("Petrônio");
 		p.setCpf("11111111111");
-		p.setCriador(u);
-		p.setUltimoModificador(u);
-
-		pessoas.Salvar(p);
+		
+		if(pessoas.Salvar(p)) {
+			log.registrar(LogNivel.Informacao, "Cadastro", p.toString());
+		} else {
+			log.registrar(LogNivel.Erro, "Cadastro", p.toString());
+		}
 		
 
 		/* 

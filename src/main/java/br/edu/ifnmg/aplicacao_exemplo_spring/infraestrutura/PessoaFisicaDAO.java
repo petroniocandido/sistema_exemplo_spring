@@ -11,22 +11,11 @@ import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.PessoaFisicaRepositorio;
 
 @Service
 public class PessoaFisicaDAO 
-    extends DAO<PessoaFisica>
+    extends PessoaDAO<PessoaFisica>
     implements PessoaFisicaRepositorio {
 
     public PessoaFisicaDAO() {
         super(PessoaFisica.class);
-    }
-
-    @Override
-    @Transactional
-    public boolean Salvar(PessoaFisica obj) {
-        if(obj.getId() == 0){
-            obj.setDataCriacao(new Date());
-        }
-        obj.setDataUltimaModificacao(new Date());
-
-        return super.Salvar(obj);
     }
     
 }

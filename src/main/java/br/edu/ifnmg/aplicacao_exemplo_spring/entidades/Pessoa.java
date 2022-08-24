@@ -29,6 +29,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.persistence.Version;
 
+import net.bytebuddy.matcher.FailSafeMatcher;
+
 @Entity
 @Table(name = "Pessoas")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -42,7 +44,8 @@ public class Pessoa {
     @Column(name = "nome", length = 500, nullable = false)
     private String nome;
 
-    @Transient
+    @Enumerated(EnumType.ORDINAL)
+    @Column(insertable = false, updatable = false)
     private PessoaTipo tipo;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pessoa")

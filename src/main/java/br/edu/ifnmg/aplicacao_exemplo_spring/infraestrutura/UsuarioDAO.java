@@ -21,14 +21,15 @@ public class UsuarioDAO
     }
 
     @Override
-    @Transactional
     public Usuario Abrir(String login) {
         try {
-            Query consulta = getManager().createQuery("select u from Usuario u where u.login = ?");
-            consulta.setParameter(1, login);
+            Query consulta = getManager()
+            .createQuery("select u from Usuario u where u.login = :login");
+            consulta.setParameter("login", login);
     
             return (Usuario) consulta.getSingleResult();
             } catch(Exception ex){
+                System.out.println(ex.getMessage());
                 return null;
             }
     }

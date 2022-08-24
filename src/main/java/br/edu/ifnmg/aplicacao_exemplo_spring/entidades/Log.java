@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor
+@Getter @Setter
 public class Log {
     
     @Id
@@ -37,4 +37,25 @@ public class Log {
     private String acao;
 
     private String detalhes;
+
+    public Log() {
+        this.id = 0L;
+        this.dataHora = new Date();
+        this.nivel = LogNivel.Informacao;
+        this.usuario = null;
+        this.acao = "";
+        this.detalhes = "";
+    }
+
+    public Log(LogNivel nivel, Usuario usuario, String acao, String detalhes) {
+        this();
+        this.nivel = nivel;
+        this.usuario = usuario;
+        this.acao = acao;
+        this.detalhes = detalhes;
+    }
+
+    
+
+
 }
