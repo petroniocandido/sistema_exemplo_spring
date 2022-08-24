@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,12 +26,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 @Entity
 @Table(name = "Pessoas")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo")
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.INTEGER)
 public class Pessoa {
 
     @Id
@@ -40,7 +42,7 @@ public class Pessoa {
     @Column(name = "nome", length = 500, nullable = false)
     private String nome;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Transient
     private PessoaTipo tipo;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "pessoa")

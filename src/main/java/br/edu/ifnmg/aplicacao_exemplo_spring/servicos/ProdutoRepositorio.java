@@ -1,5 +1,7 @@
 package br.edu.ifnmg.aplicacao_exemplo_spring.servicos;
 
-public class AtivoRepositorio {
+import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Produto;
+
+public interface ProdutoRepositorio extends Repositorio<Produto> {
     
 }

@@ -36,12 +36,7 @@ public class AplicacaoExemploSpringApplication
 	public void run(String... args) throws Exception {
 		
 		// Cria um objeto da entidade Pessoa
-		/* 
-		PessoaFisica p = new PessoaFisica();
-		p.setNome("Petrônio");
-
-		pessoas.Salvar(p);
-		*/
+		 
 
 		// Cria um objeto da entidade Usuario
 		Usuario u = new Usuario();
@@ -50,9 +45,20 @@ public class AplicacaoExemploSpringApplication
 
 		usuarios.Salvar(u);
 
-		for(Usuario uu : usuarios.Buscar(null)){
-			System.out.println(uu);
-		}
+		//for(Usuario uu : usuarios.Buscar(null)){
+		//	System.out.println(uu);
+		//}
+
+		u = usuarios.Abrir(1L);
+
+		PessoaFisica p = new PessoaFisica();
+		p.setNome("Petrônio");
+		p.setCpf("11111111111");
+		p.setCriador(u);
+		p.setUltimoModificador(u);
+
+		pessoas.Salvar(p);
+		
 
 		/* 
 		// Inicializa o gerenciador de entidades

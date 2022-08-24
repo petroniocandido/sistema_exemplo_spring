@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +29,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "Ativos")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo")
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.INTEGER)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @EqualsAndHashCode
 public class Ativo {
 
@@ -35,7 +37,7 @@ public class Ativo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Transient
     private AtivoTipo tipo;
 
     private String nome;

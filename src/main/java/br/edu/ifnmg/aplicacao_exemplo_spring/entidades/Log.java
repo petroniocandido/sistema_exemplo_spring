@@ -3,6 +3,8 @@ package br.edu.ifnmg.aplicacao_exemplo_spring.entidades;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,9 @@ public class Log {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Enumerated(EnumType.STRING)
+    private LogNivel nivel;
 
     @ManyToOne
     private Usuario usuario;

@@ -23,6 +23,15 @@ public class DAO<T> implements Repositorio<T> {
 		this.classe = classe;
     }
 
+
+    public EntityManager getManager() {
+        return manager;
+    }
+
+    public Class<T> getClasse() {
+        return classe;
+    }
+
     @Override
     public T Abrir(Long id) {
         try {
@@ -36,7 +45,7 @@ public class DAO<T> implements Repositorio<T> {
     @Transactional
     public boolean Salvar(T obj) {
         try {
-            manager.merge(obj);
+            obj = manager.merge(obj);
             manager.flush();
             return true;
         } catch (Exception ex) {
@@ -72,5 +81,8 @@ public class DAO<T> implements Repositorio<T> {
             return null;
         }
     }
+
+
+
     
 }
