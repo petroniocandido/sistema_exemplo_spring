@@ -43,8 +43,7 @@ public class AplicacaoExemploSpringApplication
 	@Override
 	public void run(String... args) throws Exception {
 		
-		// Cria um objeto da entidade Pessoa
-		 
+
 
 		// Cria um objeto da entidade Usuario
 		Usuario u = new Usuario();
@@ -53,9 +52,11 @@ public class AplicacaoExemploSpringApplication
 
 		usuarios.Salvar(u);
 
-		//for(Usuario uu : usuarios.Buscar(null)){
-		//	System.out.println(uu);
-		//}
+		u = usuarios.Abrir(1L);
+
+		for(Usuario uu : usuarios.Buscar(null)){
+			System.out.println(uu);
+		}
 
 		if(autenticacao.autenticar("petronio", "123")) {
 			log.registrar(LogNivel.Informacao, "Login");
