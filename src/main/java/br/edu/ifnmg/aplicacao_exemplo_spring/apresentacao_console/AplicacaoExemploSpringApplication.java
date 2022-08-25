@@ -1,4 +1,4 @@
-package br.edu.ifnmg.aplicacao_exemplo_spring.aplicacao_exemplo_spring;
+package br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_console;
 
 //import javax.persistence.EntityManager;
 //import javax.persistence.EntityTransaction;
