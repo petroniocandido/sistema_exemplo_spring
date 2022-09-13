@@ -1,10 +1,6 @@
 package br.edu.ifnmg.aplicacao_exemplo_spring.infraestrutura;
 
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 

@@ -43,8 +43,6 @@ public class AplicacaoExemploSpringApplication
 	@Override
 	public void run(String... args) throws Exception {
 		
-
-
 		// Cria um objeto da entidade Usuario
 		Usuario u = new Usuario();
 		u.setLogin("petronio");
@@ -57,7 +55,7 @@ public class AplicacaoExemploSpringApplication
 		for(Usuario uu : usuarios.Buscar(null)){
 			System.out.println(uu);
 		}
-
+ 
 		if(autenticacao.autenticar("petronio", "123")) {
 			log.registrar(LogNivel.Informacao, "Login");
 		}

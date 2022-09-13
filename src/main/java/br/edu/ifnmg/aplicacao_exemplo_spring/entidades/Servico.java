@@ -9,15 +9,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-//import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name = "Servicos")
 @DiscriminatorValue("2")
-@Getter @Setter  @EqualsAndHashCode
+@Getter @Setter 
 public class Servico extends Ativo {
 
     @ManyToMany
@@ -30,4 +28,31 @@ public class Servico extends Ativo {
         super();
         this.setTipo(AtivoTipo.Servico);
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = super.hashCode();
+        result = prime * result + ((insumos == null) ? 0 : insumos.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!super.equals(obj))
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Servico other = (Servico) obj;
+        if (insumos == null) {
+            if (other.insumos != null)
+                return false;
+        } else if (!insumos.equals(other.insumos))
+            return false;
+        return true;
+    }
+
+    
 }
