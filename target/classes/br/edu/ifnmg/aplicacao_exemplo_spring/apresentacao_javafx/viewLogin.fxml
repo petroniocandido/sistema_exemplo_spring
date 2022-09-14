@@ -18,7 +18,6 @@ fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.LoginCo
             <Label layoutX="21.0" layoutY="75.0" prefHeight="18.0" prefWidth="92.0" text="Login:" textAlignment="RIGHT" />
             <Label layoutX="21.0" layoutY="127.0" prefHeight="18.0" prefWidth="92.0" text="Senha:" textAlignment="RIGHT" />
             <Button fx:id="btnLogin" layoutX="176.0" layoutY="176.0" mnemonicParsing="false" onAction="#autenticar" text="Entrar" />
-            <TitledPane animated="false" layoutX="47.0" layoutY="-148.0" text="untitled" />
          </children>
       </Pane>
    </content>

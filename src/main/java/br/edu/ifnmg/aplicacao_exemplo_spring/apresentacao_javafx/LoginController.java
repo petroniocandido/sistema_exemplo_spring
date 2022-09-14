@@ -38,7 +38,9 @@ public class LoginController {
 
     @FXML
     public void autenticar(Event e){
-        if(autenticacao.autenticar(txtLogin.getText(), pwdSenha.getText())){
+        String login = txtLogin.getText();
+        String senha = pwdSenha.getText();
+        if(autenticacao.autenticar(login, senha)){
             logs.registrar(LogNivel.Informacao, "Login", txtLogin.getText());
             Alert alert = new Alert(AlertType.INFORMATION, "Bem vindo ao sistema! ", ButtonType.OK);
             alert.showAndWait();
