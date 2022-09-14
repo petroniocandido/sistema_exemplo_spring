@@ -18,13 +18,13 @@ import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.LogServico;
 import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.PessoaFisicaRepositorio;
 import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.UsuarioRepositorio;
 
-@EntityScan("br.edu.ifnmg.aplicacao_exemplo_spring")
-@ComponentScan("br.edu.ifnmg.aplicacao_exemplo_spring")
-@SpringBootApplication
+//@EntityScan("br.edu.ifnmg.aplicacao_exemplo_spring")
+//@ComponentScan("br.edu.ifnmg.aplicacao_exemplo_spring")
+//@SpringBootApplication
 public class AplicacaoExemploSpringApplication
 		implements CommandLineRunner {
 
-	@Autowired
+ 	@Autowired
 	PessoaFisicaRepositorio pessoas;
 
 	@Autowired

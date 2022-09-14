@@ -12,7 +12,6 @@ import javafx.application.Application;
 public class AplicacaoSpring {
 
     public static void main(String[] args) {
-		//SpringApplication.run(AplicacaoJavaFX.class, args);
 		Application.launch(AplicacaoJavaFX.class, args);
 	}
     

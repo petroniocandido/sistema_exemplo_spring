@@ -4,15 +4,22 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane fx:id="viewLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="397.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <PasswordField fx:id="pwdSenha" layoutX="118.0" layoutY="123.0" prefHeight="26.0" prefWidth="228.0" />
-      <TextField fx:id="txtLogin" layoutX="118.0" layoutY="71.0" prefHeight="26.0" prefWidth="228.0" />
-      <Label layoutX="21.0" layoutY="75.0" prefHeight="18.0" prefWidth="92.0" text="Login:" textAlignment="RIGHT" />
-      <Label layoutX="21.0" layoutY="127.0" prefHeight="18.0" prefWidth="92.0" text="Senha:" textAlignment="RIGHT" />
-      <Button fx:id="btnLogin" layoutX="176.0" layoutY="176.0" mnemonicParsing="false" text="Entrar" />
-   </children>
-</Pane>
+<TitledPane text="Sistema Exemplo" textAlignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.LoginController">
+   <content>
+      <Pane fx:id="viewLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="397.0">
+         <children>
+            <PasswordField fx:id="pwdSenha" layoutX="118.0" layoutY="123.0" prefHeight="26.0" prefWidth="228.0" />
+            <TextField fx:id="txtLogin" layoutX="118.0" layoutY="71.0" prefHeight="26.0" prefWidth="228.0" />
+            <Label layoutX="21.0" layoutY="75.0" prefHeight="18.0" prefWidth="92.0" text="Login:" textAlignment="RIGHT" />
+            <Label layoutX="21.0" layoutY="127.0" prefHeight="18.0" prefWidth="92.0" text="Senha:" textAlignment="RIGHT" />
+            <Button fx:id="btnLogin" layoutX="176.0" layoutY="176.0" mnemonicParsing="false" onAction="#autenticar" text="Entrar" />
+            <TitledPane animated="false" layoutX="47.0" layoutY="-148.0" text="untitled" />
+         </children>
+      </Pane>
+   </content>
+</TitledPane>
