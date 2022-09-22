@@ -13,12 +13,14 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import net.rgielen.fxweaver.core.FxmlView;
 
 @Service
 @FxmlView("viewLogin.fxml")
-public class LoginController {
+public class LoginController extends Controller {
 
+    
     @Autowired
     private AutenticacaoServico autenticacao;
 
@@ -30,6 +32,9 @@ public class LoginController {
 
     @FXML
     private PasswordField pwdSenha;
+
+    @FXML
+    TitledPane viewLogin;
 
     public LoginController() {
 
@@ -45,6 +50,8 @@ public class LoginController {
             Alert alert = new Alert(AlertType.INFORMATION, "Bem vindo ao sistema! ", ButtonType.OK);
             alert.showAndWait();
         } else {
+            carregarScene(viewLogin, TelaPrincipalController.class);
+            /*
             logs.registrar(LogNivel.Erro, "Login", txtLogin.getText());
             Alert alert = new Alert(AlertType.CONFIRMATION, "Erro ao acessar o sistema. Deseja sair?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
@@ -52,6 +59,7 @@ public class LoginController {
             if (alert.getResult() == ButtonType.YES) {
                 
             }
+            */
         }
     }
     

@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<TitledPane text="Sistema Exemplo" textAlignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+<TitledPane fx:id="viewLogin" text="Sistema Exemplo" textAlignment="CENTER" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
 fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.LoginController">
    <content>
-      <Pane fx:id="viewLogin" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="397.0">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="245.0" prefWidth="397.0">
          <children>
             <PasswordField fx:id="pwdSenha" layoutX="118.0" layoutY="123.0" prefHeight="26.0" prefWidth="228.0" />
             <TextField fx:id="txtLogin" layoutX="118.0" layoutY="71.0" prefHeight="26.0" prefWidth="228.0" />
