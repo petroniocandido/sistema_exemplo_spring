@@ -1,11 +1,16 @@
 package br.edu.ifnmg.aplicacao_exemplo_spring.entidades;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 @Entity
 @Table(name = "Usuarios")
@@ -21,7 +26,18 @@ public class Usuario {
     @Column(nullable = false)
     private String senha;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataCriacao;
+
+    @Version
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataUltimaModificacao;
+
     public Usuario() {
+        this.login = "";
+        this.senha = "";
+        this.dataCriacao = new Date();
+        this.dataUltimaModificacao = new Date();
     }
 
     public long getId() {
@@ -78,7 +94,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario [login=" + login + "]";
+        return  login ;
     }
 
 }

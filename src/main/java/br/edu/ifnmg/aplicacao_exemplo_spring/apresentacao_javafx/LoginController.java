@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.LogNivel;
 import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.AutenticacaoServico;
 import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.LogServico;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -46,20 +47,20 @@ public class LoginController extends Controller {
         String login = txtLogin.getText();
         String senha = pwdSenha.getText();
         if(autenticacao.autenticar(login, senha)){
-            logs.registrar(LogNivel.Informacao, "Login", txtLogin.getText());
-            Alert alert = new Alert(AlertType.INFORMATION, "Bem vindo ao sistema! ", ButtonType.OK);
-            alert.showAndWait();
-        } else {
             carregarScene(viewLogin, TelaPrincipalController.class);
-            /*
+            
+            logs.registrar(LogNivel.Informacao, "Login", txtLogin.getText());
+            //Alert alert = new Alert(AlertType.INFORMATION, "Bem vindo ao sistema! ", ButtonType.OK);
+            //alert.showAndWait();
+        } else {
             logs.registrar(LogNivel.Erro, "Login", txtLogin.getText());
             Alert alert = new Alert(AlertType.CONFIRMATION, "Erro ao acessar o sistema. Deseja sair?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
 
-            if (alert.getResult() == ButtonType.YES) {
-                
+            if (alert.getResult() == ButtonType.NO) {
+                Platform.exit();
             }
-            */
+            
         }
     }
     

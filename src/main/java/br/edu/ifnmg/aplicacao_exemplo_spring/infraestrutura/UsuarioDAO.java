@@ -1,8 +1,11 @@
 package br.edu.ifnmg.aplicacao_exemplo_spring.infraestrutura;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
+import javax.transaction.Transactional;
 
 import br.edu.ifnmg.aplicacao_exemplo_spring.entidades.Usuario;
 import br.edu.ifnmg.aplicacao_exemplo_spring.servicos.UsuarioRepositorio;
@@ -28,6 +31,24 @@ public class UsuarioDAO
                 System.out.println(ex.getMessage());
                 return null;
             }
+    }
+
+    @Override
+    @Transactional
+    public List<Usuario> Buscar(Usuario filtro) {
+        try {
+            String jpql = "select u from Usuario u";
+            if(!filtro.getLogin().isEmpty()){
+                jpql += " where u.login like :login";
+            }
+            Query consulta = getManager().createQuery(jpql);
+            if(!filtro.getLogin().isEmpty()){
+                consulta.setParameter("login", filtro.getLogin());
+            }
+            return consulta.getResultList();
+        } catch(Exception ex){
+            return null;
+        }
     }
     
 }
