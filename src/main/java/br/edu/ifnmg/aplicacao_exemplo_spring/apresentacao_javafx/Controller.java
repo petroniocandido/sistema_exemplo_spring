@@ -12,28 +12,31 @@ import net.rgielen.fxweaver.core.FxWeaver;
 
 public class Controller {
 
-    private ConfigurableApplicationContext applicationContext;
+    private ConfigurableApplicationContext contextoSpring;
 
     @FXML
-    public void initialize(){
+    public void initialize() {
         String[] args = new String[0];
 
-        this.applicationContext = new SpringApplicationBuilder()
+        this.contextoSpring = new SpringApplicationBuilder()
                 .sources(AplicacaoSpring.class)
                 .run(args);
 
-        
     }
 
-    public void carregarScene(Node parent, Class controller){
+    public void carregarScene(Node parent, Class controller) {
         Stage stage = (Stage) parent.getScene().getWindow();
-        FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
+        FxWeaver fxWeaver = contextoSpring.getBean(FxWeaver.class);
         Parent root = (Parent) fxWeaver.loadView(controller);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
 
+    public ConfigurableApplicationContext getContextoSpring() {
+        return contextoSpring;
     }
 
     
+
 }
