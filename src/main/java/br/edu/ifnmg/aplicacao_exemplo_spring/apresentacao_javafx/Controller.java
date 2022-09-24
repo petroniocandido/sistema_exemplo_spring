@@ -3,6 +3,7 @@ package br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,6 +14,8 @@ import net.rgielen.fxweaver.core.FxWeaver;
 public class Controller {
 
     private ConfigurableApplicationContext contextoSpring;
+
+    private Node ancora;
 
     @FXML
     public void initialize() {
@@ -36,6 +39,16 @@ public class Controller {
     public ConfigurableApplicationContext getContextoSpring() {
         return contextoSpring;
     }
+
+    public Node getAncora() {
+        return ancora;
+    }
+
+    public void setAncora(Node ancora) {
+        this.ancora = ancora;
+    }
+
+    
 
     
 

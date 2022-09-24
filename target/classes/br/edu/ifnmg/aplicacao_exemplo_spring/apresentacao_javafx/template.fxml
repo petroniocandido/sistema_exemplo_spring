@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="principal" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.MenuController">
+  <children>
+    <MenuBar  VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Sistema">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#telaUsuarios" text="Usuários" />
+            <MenuItem mnemonicParsing="false" text="Logs" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Cadastros">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Pessoas Físicas" />
+            <MenuItem mnemonicParsing="false" text="Pessoas Jurídicas" />
+            <MenuItem mnemonicParsing="false" text="Produtos" />
+            <MenuItem mnemonicParsing="false" text="Serviços" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Vendas" />
+            <Menu mnemonicParsing="false" text="Compras">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Relatórios">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+      </menus>
+    </MenuBar>
+  </children>
+</VBox>

@@ -9,9 +9,12 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.UsuarioController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.UsuarioController">
+  <children>
+<fx:include source="template.fxml" />
+<TabPane fx:id="abas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="Busca">
       <content>
@@ -19,7 +22,7 @@ fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.Usuario
                <children>
                   <AnchorPane layoutY="7.0" prefHeight="362.0" prefWidth="600.0">
                      <children>
-                        <TableView fx:id="tblBusca" layoutX="-9.0" layoutY="73.0" prefHeight="294.0" prefWidth="613.0">
+                        <TableView fx:id="tblBusca" layoutX="-9.0" layoutY="73.0" onMouseClicked="#editar" prefHeight="294.0" prefWidth="613.0">
                           <columns>
                             <TableColumn prefWidth="281.0" text="Login" />
                             <TableColumn minWidth="0.0" prefWidth="164.0" text="Data Criação" />
@@ -27,7 +30,8 @@ fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.Usuario
                         </TableView>
                         <TextField fx:id="txtLoginBusca" layoutX="89.0" layoutY="20.0" prefHeight="26.0" prefWidth="330.0" />
                         <Label layoutX="41.0" layoutY="24.0" text="Login:" />
-                        <Button fx:id="btnBuscar" layoutX="430.0" layoutY="20.0" mnemonicParsing="false" text="Buscar" />
+                        <Button fx:id="btnBuscar" layoutX="430.0" layoutY="20.0" mnemonicParsing="false" onAction="#buscar" text="Buscar" />
+                        <Button fx:id="btnNovo" layoutX="500.0" layoutY="20.0" mnemonicParsing="false" onAction="#novo" text="Novo" />
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
@@ -37,18 +41,20 @@ fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.Usuario
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnSalvar" onAction="#buscar" layoutX="198.0" layoutY="280.0" mnemonicParsing="false" text="Salvar" />
+                  <Button fx:id="btnSalvar" layoutX="198.0" layoutY="280.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
                   <Button fx:id="btnCancelar" layoutX="332.0" layoutY="280.0" mnemonicParsing="false" text="Cancelar" />
                   <Label layoutX="82.0" layoutY="56.0" text="Login:" />
                   <Label layoutX="80.0" layoutY="107.0" text="Senha:" />
                   <PasswordField fx:id="pwdSenha" layoutX="141.0" layoutY="103.0" prefHeight="26.0" prefWidth="287.0" />
                   <TextField fx:id="txtLogin" layoutX="138.0" layoutY="52.0" prefHeight="26.0" prefWidth="283.0" />
                   <Label layoutX="22.0" layoutY="167.0" text="Usuario Criador:" />
-                  <Label fx:id="lblUsuarioCriador" layoutX="138.0" layoutY="167.0" text="Usuario Criador:" />
+                  <Label fx:id="lblDataCadastro" layoutX="138.0" layoutY="167.0" text="" />
                   <Label layoutX="22.0" layoutY="210.0" text="Data Cadastro:" />
-                  <Label fx:id="lblDataCadastro" layoutX="138.0" layoutY="210.0" text="Usuario Criador:" />
+                  <Label fx:id="lblUltimaModificacao" layoutX="138.0" layoutY="210.0" text="" />
                </children></AnchorPane>
       </content>
     </Tab>
   </tabs>
 </TabPane>
+  </children>
+</VBox>

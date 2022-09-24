@@ -64,6 +64,22 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataUltimaModificacao() {
+        return dataUltimaModificacao;
+    }
+
+    public void setDataUltimaModificacao(Date dataUltimaModificacao) {
+        this.dataUltimaModificacao = dataUltimaModificacao;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
