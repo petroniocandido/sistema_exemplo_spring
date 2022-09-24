@@ -55,6 +55,9 @@ public class UsuarioController extends Controller {
     @FXML 
     private Label lblDataCadastro;
 
+    @FXML 
+    private Label lblId;
+
     @FXML
     private TabPane abas;
 
@@ -107,6 +110,7 @@ public class UsuarioController extends Controller {
     }
 
     public void carregarCampos() {
+        lblId.setText(Long.toString(entidade.getId()));
         txtLogin.setText(entidade.getLogin());
         pwdSenha.setText(entidade.getSenha());
         lblDataCadastro.setText(entidade.getDataCriacao().toString());

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,7 +15,7 @@
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifnmg.aplicacao_exemplo_spring.apresentacao_javafx.UsuarioController">
   <children>
 <fx:include source="template.fxml" />
-<TabPane fx:id="abas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane fx:id="abas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="639.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="Busca">
       <content>
@@ -22,7 +23,7 @@
                <children>
                   <AnchorPane layoutY="7.0" prefHeight="362.0" prefWidth="600.0">
                      <children>
-                        <TableView fx:id="tblBusca" layoutX="-9.0" layoutY="73.0" onMouseClicked="#editar" prefHeight="294.0" prefWidth="613.0">
+                        <TableView fx:id="tblBusca" layoutX="-9.0" layoutY="73.0" onMouseClicked="#editar" prefHeight="294.0" prefWidth="640.0">
                           <columns>
                             <TableColumn prefWidth="281.0" text="Login" />
                             <TableColumn minWidth="0.0" prefWidth="164.0" text="Data Criação" />
@@ -41,16 +42,26 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnSalvar" layoutX="198.0" layoutY="280.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
-                  <Button fx:id="btnCancelar" layoutX="332.0" layoutY="280.0" mnemonicParsing="false" text="Cancelar" />
+                  <Label layoutX="70.0" layoutY="14.0" text="Codigo:" />
+                  <Label fx:id="lblId" layoutX="138.0" layoutY="14.0" prefHeight="18.0" prefWidth="282.0" />
+                  
                   <Label layoutX="82.0" layoutY="56.0" text="Login:" />
+                  <TextField fx:id="txtLogin" layoutX="138.0" layoutY="52.0" prefHeight="26.0" prefWidth="283.0" />
+
                   <Label layoutX="80.0" layoutY="107.0" text="Senha:" />
                   <PasswordField fx:id="pwdSenha" layoutX="141.0" layoutY="103.0" prefHeight="26.0" prefWidth="287.0" />
-                  <TextField fx:id="txtLogin" layoutX="138.0" layoutY="52.0" prefHeight="26.0" prefWidth="283.0" />
-                  <Label layoutX="22.0" layoutY="167.0" text="Usuario Criador:" />
+            
+                  <Label layoutX="22.0" layoutY="167.0" text="Data Cadastro:" />
                   <Label fx:id="lblDataCadastro" layoutX="138.0" layoutY="167.0" text="" />
-                  <Label layoutX="22.0" layoutY="210.0" text="Data Cadastro:" />
+                  
+                  <Label layoutX="14.0" layoutY="210.0" text="Ultima Alteraçao:" />
                   <Label fx:id="lblUltimaModificacao" layoutX="138.0" layoutY="210.0" text="" />
+                  
+                  <Separator layoutX="29.0" layoutY="251.0" prefHeight="7.0" prefWidth="542.0" />
+
+                  <Button fx:id="btnSalvar" layoutX="198.0" layoutY="280.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
+                  <Button fx:id="btnCancelar" layoutX="332.0" layoutY="280.0" mnemonicParsing="false" text="Cancelar" />
+                  
                </children></AnchorPane>
       </content>
     </Tab>
