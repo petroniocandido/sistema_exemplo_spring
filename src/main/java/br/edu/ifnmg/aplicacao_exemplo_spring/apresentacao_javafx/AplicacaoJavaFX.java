@@ -11,26 +11,27 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
 
 public class AplicacaoJavaFX extends Application {
-    private ConfigurableApplicationContext applicationContext;
+
+    private ConfigurableApplicationContext contextoSpring;
 
     @Override
     public void init() {
         String[] args = getParameters().getRaw().toArray(new String[0]);
 
-        this.applicationContext = new SpringApplicationBuilder()
+        this.contextoSpring = new SpringApplicationBuilder()
                 .sources(AplicacaoSpring.class)
                 .run(args);
     }
 
     @Override
     public void stop() {
-        this.applicationContext.close();
+        this.contextoSpring.close();
         Platform.exit();
     }
 
     @Override
     public void start(Stage stage) {
-        FxWeaver fxWeaver = applicationContext.getBean(FxWeaver.class);
+        FxWeaver fxWeaver = contextoSpring.getBean(FxWeaver.class);
         Parent root = fxWeaver.loadView(LoginController.class);
         Scene scene = new Scene(root);
         stage.setScene(scene);

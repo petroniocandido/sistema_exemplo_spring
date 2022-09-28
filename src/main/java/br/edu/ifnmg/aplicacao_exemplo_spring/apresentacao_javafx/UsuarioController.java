@@ -29,7 +29,13 @@ import net.rgielen.fxweaver.core.FxmlView;
 @FxmlView("viewUsuarios.fxml")
 public class UsuarioController extends Controller {
 
+
+    // A entidade em edição
     private Usuario entidade;
+
+    ////////////////////////////////////////////
+    // Beans do Spring
+    ////////////////////////////////////////////
 
     @Autowired
     private UsuarioRepositorio repositorio;
@@ -37,11 +43,15 @@ public class UsuarioController extends Controller {
     @Autowired
     private LogServico logs;
 
+    ////////////////////////////////////////////
+    // Componentes Visuais do JavaFX
+    ////////////////////////////////////////////
+
     @FXML
     private TextField txtLoginBusca;
 
     @FXML
-    private TableView tblBusca;
+    private TableView<Usuario> tblBusca;
 
     @FXML
     private TextField txtLogin;
@@ -68,12 +78,21 @@ public class UsuarioController extends Controller {
     @FXML
     @Override
     public void initialize() {
+
+        // Inicialização da classe mãe Controller
         super.initialize();
+
+        // Configurar tabela
         configurarTabela();
+
+        // Desabilita a aba de edição 
         abas.getTabs().get(1).setDisable(true);
+    
     }
 
     public void configurarTabela() {
+
+        // Configurar as duas colunas
 
         tblBusca.getColumns().removeAll(tblBusca.getColumns());
 
@@ -86,14 +105,17 @@ public class UsuarioController extends Controller {
         tblBusca.getColumns().add(login);
 
         TableColumn<Usuario, Date> data_criacao = 
-            new TableColumn<>("Data Criacao");
+            new TableColumn<>("Data Criação");
         
         data_criacao.setCellValueFactory(
             new PropertyValueFactory<>("dataCriacao"));
 
         tblBusca.getColumns().add(data_criacao);
 
-        TableViewSelectionModel<Usuario> selectionModel = tblBusca.getSelectionModel();
+        // Confirugar o modo de seleção
+
+        TableViewSelectionModel<Usuario> selectionModel 
+            = tblBusca.getSelectionModel();
 
         selectionModel.setSelectionMode(SelectionMode.SINGLE);
 
@@ -124,15 +146,17 @@ public class UsuarioController extends Controller {
 
     @FXML
     public void buscar(Event e){
+
         Usuario filtro = new Usuario();
+        
         filtro.setLogin(txtLoginBusca.getText());
+        
         List<Usuario> resultado = repositorio.Buscar(filtro);
 
         tblBusca.getItems().removeAll(tblBusca.getItems());
         
-        for(Usuario u : resultado){
-            tblBusca.getItems().add(u);
-        }
+        tblBusca.getItems().addAll(resultado);
+        
     }
 
     @FXML
@@ -169,6 +193,17 @@ public class UsuarioController extends Controller {
             Alert confirmacao = new Alert(AlertType.INFORMATION, "Operação cancelada! ", ButtonType.OK);
             confirmacao.showAndWait();
         }
+    }
+
+    @FXML
+    public void cancelar(Event e){
+        Alert alert = new Alert(AlertType.CONFIRMATION, "Deseja realmente cancelar a edição?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            abas.getTabs().get(1).setDisable(true);
+            abas.getSelectionModel().select(0);
+        } 
     }
     
 }

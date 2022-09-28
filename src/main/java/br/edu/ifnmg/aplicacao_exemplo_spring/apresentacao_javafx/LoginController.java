@@ -46,10 +46,13 @@ public class LoginController extends Controller {
     public void autenticar(Event e){
         String login = txtLogin.getText();
         String senha = pwdSenha.getText();
+
         if(autenticacao.autenticar(login, senha)){
+
+            logs.registrar(LogNivel.Informacao, "Login", txtLogin.getText());
+            
             carregarScene(viewLogin, TelaPrincipalController.class);
             
-            logs.registrar(LogNivel.Informacao, "Login", txtLogin.getText());
             //Alert alert = new Alert(AlertType.INFORMATION, "Bem vindo ao sistema! ", ButtonType.OK);
             //alert.showAndWait();
         } else {

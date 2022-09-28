@@ -38,6 +38,7 @@ public class UsuarioDAO
     public List<Usuario> Buscar(Usuario filtro) {
         try {
             String jpql = "select u from Usuario u";
+            
             if(!filtro.getLogin().isEmpty()){
                 jpql += " where u.login like :login";
             }

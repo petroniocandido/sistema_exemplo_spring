@@ -28,12 +28,24 @@ public class Controller {
     }
 
     public void carregarScene(Node parent, Class controller) {
+        
+        // Utiliza o parente para acessar a Stage
         Stage stage = (Stage) parent.getScene().getWindow();
+        
+        // Pegar o Bean do JavaFXWeaver
         FxWeaver fxWeaver = contextoSpring.getBean(FxWeaver.class);
+        
+        // O FXWeaver carrega o controlador na memória
         Parent root = (Parent) fxWeaver.loadView(controller);
+        
+        // Associa o controlador a uma cena
         Scene scene = new Scene(root);
+        
+        // Associa a cena à tela atual
         stage.setScene(scene);
+        
         stage.show();
+    
     }
 
     public ConfigurableApplicationContext getContextoSpring() {
